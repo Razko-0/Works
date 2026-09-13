@@ -1,4 +1,5 @@
 import os
+# Hide the pygame welcome message for a cleaner result
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import pygame
 
@@ -41,21 +42,21 @@ def main():
         return
 
 # Variables
-    folder = "Musique"
+    folder = "Music"
     mp3_files = [file for file in os.listdir(folder) if file.endswith(".mp3")]
 
-# Erreurs
+# Errors
     if not os.path.isdir(folder):
         print(f"folder '{folder}' not found.")
 
     if not mp3_files:
         print("No music files found.")
 
-# Boucle
+# Loop
     while True:
         # Deco
         print("\n----- MUSIC PLAYER -----")
-        # 2 args possible grace à enumerate; start permet de commencer à compter à 1
+        # 2 possible arguments thanks to 'enumerate'; 'start' lets you start counting from 1
         for index, song in enumerate(mp3_files, start=1):
             print(f"{index}. {song}")
 
@@ -66,12 +67,12 @@ def main():
             print("Please enter a valid number.")
             continue
 
-        # upper permet de mettre le char en maj (donc 'q' et 'Q' sont acceptés)
+        # "upper" allows you to type in uppercase (so "q" and "Q" are accepted)
         if choice_input.upper() == "Q":
             break
 
     # Selection
-        # Match l'index du son
+        # Match the audio index
         choice = int(choice_input) - 1
         if 0 <= choice < len(mp3_files):
             play_music(folder, mp3_files[choice])
