@@ -13,4 +13,6 @@ I might add a *next*/*previous* track system, as well as a song *loop* system an
 
 I would love to add a *GUI* too.
 
+By the way you can always replace the 'folder' variable with the path where you have all your musics, so you don't need an additional 'Music' folder.
+
 ---
