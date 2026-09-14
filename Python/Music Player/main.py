@@ -42,7 +42,7 @@ def main():
         return
 
 # Variables
-    folder = "Music"
+    folder = "Music" # You can set any path where you have music stored
     mp3_files = [file for file in os.listdir(folder) if file.endswith(".mp3")]
 
 # Errors
