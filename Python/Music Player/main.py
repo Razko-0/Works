@@ -11,24 +11,42 @@ def play_music(folder, music_name):
         return
 
     pygame.mixer.music.load(file_path)
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1) # -1 = Play in loop
 
     print(f"Now playing: {music_name}")
-    print("Commands: [P]ause, [R]esume, [S]top")
+    print("Commands: [-][+]Volume, res[T]art, [P]ause, [R]esume, [N]ext, [S]top")
 
     while True:
         command = input("> ").upper()
 
-        if command == "P":
+        if command == "T":
+            pygame.mixer.music.rewind()
+            print("Restarted")
+        elif command == "P":
             pygame.mixer.music.pause()
             print("Paused")
+
         elif command == "R":
             pygame.mixer.music.unpause()
             print("Resumed")
+
         elif command == "S":
             pygame.mixer.music.stop()
             print("Stopped")
             return
+        
+        elif command == "-":
+            current_volume = pygame.mixer.music.get_volume()
+            new_volume = max(0.0, current_volume - 0.10) # max is used so it can't be less than 0
+            pygame.mixer.music.set_volume(new_volume)
+            print(f"Volume down: {new_volume:.1f}") # :'.1f' is for decimals
+
+        elif command == "+":
+            current_volume = pygame.mixer.music.get_volume()
+            new_volume = min(1.0, current_volume + 0.10) # min is used so it can't be higher than 1
+            pygame.mixer.music.set_volume(new_volume)
+            print(f"Volume up: {new_volume:.1f}")
+
         else:
             print("Invalid Command.")
 
@@ -56,20 +74,23 @@ def main():
     while True:
         # Deco
         print("\n----- MUSIC PLAYER -----")
+        print("  My titles:\n")
         # 2 possible arguments thanks to 'enumerate'; 'start' lets you start counting from 1
         for index, song in enumerate(mp3_files, start=1):
             print(f"{index}. {song}")
 
-        choice_input = input("\nEnter the music index to play ('Q' to quit):")
+        choice_input = input("\nEnter the music index to play ('R' for random / 'Q' for quit):")
 
     # Errors
-        if not choice_input.isdigit():
-            print("Please enter a valid number.")
-            continue
-
         # "upper" allows you to type in uppercase (so "q" and "Q" are accepted)
         if choice_input.upper() == "Q":
             break
+        if choice_input.upper() == "R":
+            choice_input = random.randint(1, len(mp3_files))
+
+        elif not choice_input.isdigit():
+            print("Please enter a valid number.")
+            continue
 
     # Selection
         # Match the audio index
