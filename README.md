@@ -1,4 +1,4 @@
 # Works
-Where I post some of what I made 
-Everything is open source
-I give informations about applications, inspos, and tutos I looked for.
+Where I post some programs I made \
+Everything is **open source**\
+I give informations about applications used, inspos, and tutorials I looked for.
