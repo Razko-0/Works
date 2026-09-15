@@ -36,14 +36,27 @@ def play_music(folder, musics, index):
             pygame.mixer.music.stop()
             print("Stopped")
             return
-
+            
+        elif command == "V":
+            pygame.mixer.music.stop()
+            if index == 0:
+                index = len(musics) - 1
+            else:
+                index -= 1
+            # Probably not optimized but it works
+            file_path = os.path.join(folder, musics[index])
+            if not os.path.exists(file_path):
+                print("File not found.")
+                return
+            pygame.mixer.music.load(file_path)
+            pygame.mixer.music.play(-1)
+            
         elif command == "N":
             pygame.mixer.music.stop()
             if index == len(musics) - 1:
                 index = 0
             else:
                 index += 1
-
             # Probably not optimized but it works
             file_path = os.path.join(folder, musics[index])
             if not os.path.exists(file_path):
