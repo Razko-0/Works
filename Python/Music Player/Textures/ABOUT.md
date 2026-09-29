@@ -1,6 +1,6 @@
-### The textures
+### The textures (application version)
 
-Here you put all the required textures for the application version to work
+Here you put all the required textures for the application to work
 
 ---
 
