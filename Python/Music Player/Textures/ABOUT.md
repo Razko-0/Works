@@ -4,8 +4,9 @@ Here you put all the required textures for the application to work
 
 ---
 
-### Textures Rerquired:
+### Rerquired Textures:
 - Pause
 - Play
 - Previous
 - Next
+- Slider (background + button)
